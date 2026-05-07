@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Para ti ❤️</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        rosa: '#f8c8d8',
+                        rojo: '#e6396b',
+                        fondo: '#fff5f8',
+                        dorado: '#d4af37'
+                    },
+                    fontFamily: {
+                        cursiva: ['Segoe UI', 'cursive', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .sombra-suave {
+                box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            }
+            .borde-redondo {
+                border-radius: 18px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-fondo min-h-screen p-4">
+
+    <div class="w-full bg-white borde-redondo sombra-suave p-5 text-center mt-3">
+        
+        <!-- Título -->
+        <h1 class="text-rojo text-3xl font-cursiva font-bold mb-4">
+            Para la persona que quiero ✨
+        </h1>
+
+        <!-- Mensaje -->
+        <p class="text-gray-700 mb-6 leading-relaxed text-base">
+            Cada foto es un recuerdo hermoso que guardo con mucho cariño. Eres una persona muy especial y cada detalle de ti me encanta.
+            Esta página es solo un pequeño detalle para recordarte lo mucho que te quiero.
+        </p>
+
+        <!-- Galería de fotos adaptada para celular -->
+        <div class="space-y-5 mb-8">
+            <!-- Foto 1 -->
+            <div class="overflow-hidden borde-redondo sombra-suave">
+                <img 
+                    src="https://i.imgur.com/7X8Z9QH.jpg" 
+                    alt="Foto especial" 
+                    class="w-full h-auto"
+                >
+            </div>
+            <!-- Foto 2 -->
+            <div class="overflow-hidden borde-redondo sombra-suave">
+                <img 
+                    src="https://i.imgur.com/9Y7X2Wd.jpg" 
+                    alt="Foto especial" 
+                    class="w-full h-auto"
+                >
+            </div>
+            <!-- Foto 3 -->
+            <div class="overflow-hidden borde-redondo sombra-suave">
+                <img 
+                    src="https://i.imgur.com/3Z4sFgL.jpg" 
+                    class="w-full h-auto"
+                >
+            </div>
+        </div>
+
+        <!-- Reproductor de música (más grande para tocar con dedo) -->
+        <div class="bg-rosa/30 borde-redondo p-5 mb-6 border border-rosa/50">
+            <p class="text-rojo font-cursiva text-lg mb-3">Canción que me recuerda a ti 🎵</p>
+            <audio controls class="w-full h-14 rounded-xl">
+                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+                Tu celular no soporta el reproductor de audio.
+            
+        </div>
+
+        <!-- Mensaje final -->
+        <p class="text-rojo font-cursiva text-xl mt-2">
+            Con todo mi amor ❤️
+        </p>
+
+    </div>
+
+    <!-- Efectos bonitos -->
+    <script>
+        // Corazones y luces flotantes
+        function crearBrillo() {
+            const brillo = document.createElement('div');
+            brillo.innerHTML = '❤️';
+            brillo.style.position = 'fixed';
+            brillo.style.left = Math.random() * 100 + 'vw';
+            brillo.style.bottom = '-10px';
+            brillo.style.fontSize = (Math.random() * 15 + 12) + 'px';
+            brillo.style.opacity = Math.random() * 0.7 + 0.3;
+            brillo.style.animation = 'subir 7s linear infinite';
+            brillo.style.zIndex = '-1';
+            document.body.appendChild(brillo);
+
+            setTimeout(() => brillo.remove(), 7000);
+        }
+
+        setInterval(crearBrillo, 450);
+
+        const estilo = document.createElement('style');
+        estilo.textContent = `
+            @keyframes subir {
+                0% { transform: translateY(0) rotate(0deg); }
+                100% { transform: translateY(100vh) rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(estilo);
+    </script>
+
+</body>
+</html>
