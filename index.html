@@ -40,22 +40,29 @@
             .texto-sombra {
                 text-shadow: 0 0 5px rgba(255, 0, 80, 0.5);
             }
-            .oculto {
-                display: none;
+            /* Clase para el efecto de aparición poco a poco */
+            .aparecer {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: all 1s ease-out;
+            }
+            .aparecer.visible {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
     </style>
 </head>
-<body class="bg-fondoOscuro min-h-screen flex flex-col items-center justify-center p-5 overflow-hidden">
+<body class="bg-fondoOscuro min-h-screen p-5 overflow-y-auto">
 
     <!-- Corazones 3D flotantes -->
     <div id="corazonesFondo"></div>
 
     <!-- Contenedor principal -->
-    <div class="w-full max-w-md bg-black/40 backdrop-blur-md rounded-3xl p-6 text-center sombra-neon-suave relative z-10">
+    <div class="w-full max-w-md mx-auto bg-black/40 backdrop-blur-md rounded-3xl p-6 text-center sombra-neon-suave relative z-10">
         
         <!-- Pantalla inicial -->
-        <div id="pantallaInicial">
+        <div class="mb-10">
             <h1 class="text-rojoNeon text-[clamp(1.8rem,5vw,2.5rem)] font-titulo font-bold mb-6 texto-sombra flex items-center justify-center gap-3">
                 <span class="corazon-3d text-3xl">❤️</span>
                 Para ti
@@ -66,10 +73,6 @@
                 Esta página está hecha solo para ti, porque eres lo más bonito que tengo. Aquí encontrarás un pedacito de todo lo que me haces sentir, junto con esos momentos que me encanta admirar de ti.
             </p>
 
-            <button id="botonInicio" class="bg-rojoNeon text-white text-xl font-bold py-4 px-8 rounded-full sombra-neon transition-all duration-300 hover:scale-105 active:scale-95 mb-6">
-                Presiona aquí ❤️
-            </button>
-
             <p class="text-blancoSuave text-base leading-relaxed font-elegante">
                 Todo esto es para recordarte<br>
                 lo hermosa que eres,<br>
@@ -78,10 +81,10 @@
             </p>
         </div>
 
-        <!-- Secciones de fotos y mensajes -->
-        <div id="contenido" class="oculto">
+        <!-- Secciones de fotos y mensajes - Se puede deslizar y aparecen poco a poco -->
+        <div class="espacio-contenido">
             <!-- Foto 1 -->
-            <div class="seccion mb-10">
+            <div class="seccion mb-10 aparecer">
                 <div class="overflow-hidden rounded-2xl sombra-neon-suave mb-5">
                     <img 
                         src="https://files.catbox.moe/6x1i7t.jpg" 
@@ -95,7 +98,7 @@
             </div>
 
             <!-- Foto 2 -->
-            <div class="seccion mb-10 oculto">
+            <div class="seccion mb-10 aparecer">
                 <div class="overflow-hidden rounded-2xl sombra-neon-suave mb-5">
                     <img 
                         src="https://files.catbox.moe/vlqc65.jpg" 
@@ -109,7 +112,7 @@
             </div>
 
             <!-- Foto 3 -->
-            <div class="seccion mb-10 oculto">
+            <div class="seccion mb-10 aparecer">
                 <div class="overflow-hidden rounded-2xl sombra-neon-suave mb-5">
                     <img 
                         src="https://files.catbox.moe/4j92x5.jpg" 
@@ -123,7 +126,7 @@
             </div>
 
             <!-- Foto 4 -->
-            <div class="seccion mb-8 oculto">
+            <div class="seccion mb-8 aparecer">
                 <div class="overflow-hidden rounded-2xl sombra-neon-suave mb-5">
                     <img 
                         src="https://files.catbox.moe/pc5rm7.jpg" 
@@ -136,21 +139,16 @@
                 </p>
             </div>
 
-            <!-- Botón para avanzar -->
-            <button id="botonSiguiente" class="bg-rojoNeon text-white text-lg font-bold py-3 px-7 rounded-full sombra-neon transition-all duration-300 hover:scale-105 active:scale-95">
-                Siguiente ❤️
-            </button>
-
-            <!-- Reproductor de música -->
+            <!-- Reproductor de música corregido -->
             <div class="mt-8 bg-black/30 rounded-xl p-4 border border-rojoNeon/30">
                 <p class="text-rojoNeon font-elegante mb-3 text-base">Canción que me recuerda a ti 🎵</p>
-                <audio controls class="w-full h-12 rounded-xl" autoplay loop>
+                <audio controls class="w-full h-12 rounded-xl" loop preload="auto">
                     <source src="https://files.catbox.moe/dv4ryo.m4a" type="audio/mp4">
                     Tu celular no soporta el reproductor de audio.
                 
             </div>
 
-            <p class="text-rojoNeon text-xl font-titulo mt-6 texto-sombra">
+            <p class="text-rojoNeon text-xl font-titulo mt-6 texto-sombra mb-10">
                 Con todo mi amor, siempre ❤️
             </p>
         </div>
@@ -190,28 +188,27 @@
         `;
         document.head.appendChild(estiloAnimacion);
 
-        // Interactividad para avanzar entre secciones
-        const pantallaInicial = document.getElementById('pantallaInicial');
-        const contenido = document.getElementById('contenido');
-        const secciones = document.querySelectorAll('.seccion');
-        const botonSiguiente = document.getElementById('botonSiguiente');
-        let seccionActual = 0;
+        // Efecto: aparecen poco a poco al deslizar
+        const elementosAparecer = document.querySelectorAll('.aparecer');
 
-        // Al presionar el botón de inicio
-        document.getElementById('botonInicio').addEventListener('click', () => {
-            pantallaInicial.classList.add('oculto');
-            contenido.classList.remove('oculto');
+        const observer = new IntersectionObserver((entradas) => {
+            entradas.forEach(entrada => {
+                if (entrada.isIntersecting) {
+                    entrada.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        elementosAparecer.forEach(el => {
+            observer.observe(el);
         });
 
-        // Al presionar el botón de siguiente
-        botonSiguiente.addEventListener('click', () => {
-            secciones[seccionActual].classList.add('oculto');
-            seccionActual++;
-            if (seccionActual < secciones.length) {
-                secciones[seccionActual].classList.remove('oculto');
-            } else {
-                botonSiguiente.classList.add('oculto');
-            }
+        // Reproducir música automáticamente (en algunos celulares hay que activarlo manualmente por seguridad)
+        window.addEventListener('load', () => {
+            const musica = document.querySelector('audio');
+            musica.play().catch(() => {
+                console.log("El usuario debe activar la reproducción");
+            });
         });
     </script>
 
