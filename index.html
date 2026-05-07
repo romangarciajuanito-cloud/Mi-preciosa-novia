@@ -38,45 +38,48 @@
 
     <div class="w-full bg-white borde-redondo sombra-suave p-5 text-center mt-3">
         
-        <!-- Título -->
         <h1 class="text-rojo text-3xl font-cursiva font-bold mb-4">
             Para la persona que quiero ✨
         </h1>
 
-        <!-- Mensaje -->
         <p class="text-gray-700 mb-6 leading-relaxed text-base">
-            Cada foto es un recuerdo hermoso que guardo con mucho cariño. Eres una persona muy especial y cada detalle de ti me encanta.
+            Cada foto es un recuerdo hermoso que guardo con mucho cariño. Eres una persona muy especial y cada detalle de ti me encanta. 
             Esta página es solo un pequeño detalle para recordarte lo mucho que te quiero.
         </p>
 
-        <!-- Galería de fotos adaptada para celular -->
+        <!-- Galería con tus fotos de Catbox -->
         <div class="space-y-5 mb-8">
-            <!-- Foto 1 -->
             <div class="overflow-hidden borde-redondo sombra-suave">
                 <img 
-                    src="https://i.imgur.com/7X8Z9QH.jpg" 
+                    src="https://files.catbox.moe/6x1i7t.jpg" 
                     alt="Foto especial" 
                     class="w-full h-auto"
                 >
             </div>
-            <!-- Foto 2 -->
             <div class="overflow-hidden borde-redondo sombra-suave">
                 <img 
-                    src="https://i.imgur.com/9Y7X2Wd.jpg" 
+                    src="https://files.catbox.moe/vlqc65.jpg" 
                     alt="Foto especial" 
                     class="w-full h-auto"
                 >
             </div>
-            <!-- Foto 3 -->
             <div class="overflow-hidden borde-redondo sombra-suave">
                 <img 
-                    src="https://i.imgur.com/3Z4sFgL.jpg" 
+                    src="https://files.catbox.moe/4j92x5.jpg" 
+                    alt="Foto especial" 
+                    class="w-full h-auto"
+                >
+            </div>
+            <div class="overflow-hidden borde-redondo sombra-suave">
+                <img 
+                    src="https://files.catbox.moe/pc5rm7.jpg" 
+                    alt="Foto especial" 
                     class="w-full h-auto"
                 >
             </div>
         </div>
 
-        <!-- Reproductor de música (más grande para tocar con dedo) -->
+        <!-- Reproductor de música -->
         <div class="bg-rosa/30 borde-redondo p-5 mb-6 border border-rosa/50">
             <p class="text-rojo font-cursiva text-lg mb-3">Canción que me recuerda a ti 🎵</p>
             <audio controls class="w-full h-14 rounded-xl">
@@ -85,16 +88,13 @@
             
         </div>
 
-        <!-- Mensaje final -->
         <p class="text-rojo font-cursiva text-xl mt-2">
             Con todo mi amor ❤️
         </p>
 
     </div>
 
-    <!-- Efectos bonitos -->
     <script>
-        // Corazones y luces flotantes
         function crearBrillo() {
             const brillo = document.createElement('div');
             brillo.innerHTML = '❤️';
@@ -106,12 +106,9 @@
             brillo.style.animation = 'subir 7s linear infinite';
             brillo.style.zIndex = '-1';
             document.body.appendChild(brillo);
-
             setTimeout(() => brillo.remove(), 7000);
         }
-
         setInterval(crearBrillo, 450);
-
         const estilo = document.createElement('style');
         estilo.textContent = `
             @keyframes subir {
@@ -124,3 +121,4 @@
 
 </body>
 </html>
+ 
