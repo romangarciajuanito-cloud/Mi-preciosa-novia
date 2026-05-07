@@ -40,7 +40,7 @@
             .texto-sombra {
                 text-shadow: 0 0 5px rgba(255, 0, 80, 0.5);
             }
-            /* Clase para el efecto de aparición poco a poco */
+            /* Efecto de aparición */
             .aparecer {
                 opacity: 0;
                 transform: translateY(30px);
@@ -61,7 +61,7 @@
     <!-- Contenedor principal -->
     <div class="w-full max-w-md mx-auto bg-black/40 backdrop-blur-md rounded-3xl p-6 text-center sombra-neon-suave relative z-10">
         
-        <!-- Pantalla inicial -->
+        <!-- Encabezado -->
         <div class="mb-10">
             <h1 class="text-rojoNeon text-[clamp(1.8rem,5vw,2.5rem)] font-titulo font-bold mb-6 texto-sombra flex items-center justify-center gap-3">
                 <span class="corazon-3d text-3xl">❤️</span>
@@ -81,10 +81,10 @@
             </p>
         </div>
 
-        <!-- Secciones de fotos y mensajes - Se puede deslizar y aparecen poco a poco -->
+        <!-- Todas las secciones visibles, solo con efecto de aparición -->
         <div class="espacio-contenido">
             <!-- Foto 1 -->
-            <div class="seccion mb-10 aparecer">
+            <div class="seccion mb-12 aparecer">
                 <div class="overflow-hidden rounded-2xl sombra-neon-suave mb-5">
                     <img 
                         src="https://files.catbox.moe/6x1i7t.jpg" 
@@ -98,7 +98,7 @@
             </div>
 
             <!-- Foto 2 -->
-            <div class="seccion mb-10 aparecer">
+            <div class="seccion mb-12 aparecer">
                 <div class="overflow-hidden rounded-2xl sombra-neon-suave mb-5">
                     <img 
                         src="https://files.catbox.moe/vlqc65.jpg" 
@@ -112,7 +112,7 @@
             </div>
 
             <!-- Foto 3 -->
-            <div class="seccion mb-10 aparecer">
+            <div class="seccion mb-12 aparecer">
                 <div class="overflow-hidden rounded-2xl sombra-neon-suave mb-5">
                     <img 
                         src="https://files.catbox.moe/4j92x5.jpg" 
@@ -126,7 +126,7 @@
             </div>
 
             <!-- Foto 4 -->
-            <div class="seccion mb-8 aparecer">
+            <div class="seccion mb-12 aparecer">
                 <div class="overflow-hidden rounded-2xl sombra-neon-suave mb-5">
                     <img 
                         src="https://files.catbox.moe/pc5rm7.jpg" 
@@ -139,7 +139,7 @@
                 </p>
             </div>
 
-            <!-- Reproductor de música corregido -->
+            <!-- Reproductor de música -->
             <div class="mt-8 bg-black/30 rounded-xl p-4 border border-rojoNeon/30">
                 <p class="text-rojoNeon font-elegante mb-3 text-base">Canción que me recuerda a ti 🎵</p>
                 <audio controls class="w-full h-12 rounded-xl" loop preload="auto">
@@ -188,9 +188,8 @@
         `;
         document.head.appendChild(estiloAnimacion);
 
-        // Efecto: aparecen poco a poco al deslizar
+        // Efecto de aparición al deslizar
         const elementosAparecer = document.querySelectorAll('.aparecer');
-
         const observer = new IntersectionObserver((entradas) => {
             entradas.forEach(entrada => {
                 if (entrada.isIntersecting) {
@@ -203,11 +202,11 @@
             observer.observe(el);
         });
 
-        // Reproducir música automáticamente (en algunos celulares hay que activarlo manualmente por seguridad)
+        // Música: se activa al tocar el reproductor (por seguridad de los celulares no se puede activar automáticamente)
         window.addEventListener('load', () => {
             const musica = document.querySelector('audio');
-            musica.play().catch(() => {
-                console.log("El usuario debe activar la reproducción");
+            musica.addEventListener('click', () => {
+                musica.play();
             });
         });
     </script>
