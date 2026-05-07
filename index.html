@@ -53,7 +53,7 @@
         }
     </style>
 </head>
-<body class="bg-fondoOscuro min-h-screen p-5 overflow-y-auto">
+<body class="bg-fondoOscuro min-h-screen p-5 overflow-y-auto !important">
 
     <!-- Corazones 3D flotantes -->
     <div id="corazonesFondo"></div>
@@ -73,6 +73,11 @@
                 Esta página está hecha solo para ti, porque eres lo más bonito que tengo. Aquí encontrarás un pedacito de todo lo que me haces sentir, junto con esos momentos que me encanta admirar de ti.
             </p>
 
+            <!-- Botón para activar música -->
+            <button id="botonMusica" class="bg-rojoNeon text-white text-lg font-bold py-3 px-7 rounded-full sombra-neon transition-all duration-300 hover:scale-105 active:scale-95 mb-6">
+                Presiona aquí para escuchar 🎵
+            </button>
+
             <p class="text-blancoSuave text-base leading-relaxed font-elegante">
                 Todo esto es para recordarte<br>
                 lo hermosa que eres,<br>
@@ -81,8 +86,8 @@
             </p>
         </div>
 
-        <!-- Todas las secciones visibles, solo con efecto de aparición -->
-        <div class="espacio-contenido">
+        <!-- Todas las secciones visibles, se deslizan sin problemas -->
+        <div class="espacio-contenido" style="overflow: visible !important; height: auto !important;">
             <!-- Foto 1 -->
             <div class="seccion mb-12 aparecer">
                 <div class="overflow-hidden rounded-2xl sombra-neon-suave mb-5">
@@ -139,14 +144,11 @@
                 </p>
             </div>
 
-            <!-- Reproductor de música -->
-            <div class="mt-8 bg-black/30 rounded-xl p-4 border border-rojoNeon/30">
-                <p class="text-rojoNeon font-elegante mb-3 text-base">Canción que me recuerda a ti 🎵</p>
-                <audio controls class="w-full h-12 rounded-xl" loop preload="auto">
-                    <source src="https://files.catbox.moe/dv4ryo.m4a" type="audio/mp4">
-                    Tu celular no soporta el reproductor de audio.
-                
-            </div>
+            <!-- Reproductor de música oculto -->
+            <audio id="musica" loop preload="auto" class="hidden">
+                <source src="https://files.catbox.moe/dv4ryo.m4a" type="audio/mp4">
+                Tu celular no soporta el reproductor de audio.
+            
 
             <p class="text-rojoNeon text-xl font-titulo mt-6 texto-sombra mb-10">
                 Con todo mi amor, siempre ❤️
@@ -202,12 +204,11 @@
             observer.observe(el);
         });
 
-        // Música: se activa al tocar el reproductor (por seguridad de los celulares no se puede activar automáticamente)
-        window.addEventListener('load', () => {
-            const musica = document.querySelector('audio');
-            musica.addEventListener('click', () => {
-                musica.play();
-            });
+        // Función para que el botón active la música
+        document.getElementById('botonMusica').addEventListener('click', () => {
+            const musica = document.getElementById('musica');
+            musica.play();
+            document.getElementById('botonMusica').textContent = "¡Escuchando! ❤️";
         });
     </script>
 
